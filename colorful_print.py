@@ -43,7 +43,7 @@ def c_input(arg,dm="",fg="",bg=""):
     if USE_COLOR:set_color(dm,fg,bg)
     print(arg,end="")
     if USE_COLOR:set_color()
-    out=input()
+    return input()
 
 '''
 #使用例

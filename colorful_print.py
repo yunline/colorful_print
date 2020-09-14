@@ -39,10 +39,20 @@ def c_print(*args,dm="",fg="",bg="",**kwargs):
     print(*args,**kwargs)
     if USE_COLOR:set_color()
 
-if 1:
-    print("\n")
-    print("hello_world")
-    for i in DISPLAY_MODE:
-        for j in COLOR: 
-            c_print("hello_world",dm=i,fg=j)
-    set_color()
+def c_input(arg,dm="",fg="",bg=""):
+    if USE_COLOR:set_color(dm,fg,bg)
+    print(arg,end="")
+    if USE_COLOR:set_color()
+    out=input()
+
+'''
+#使用例
+print("\n")
+print("hello_world")
+for i in DISPLAY_MODE:
+    for j in COLOR: 
+        c_print("hello_world",dm=i,fg=j)
+set_color()
+
+c_input("\n我是红色的吗？\n>>>",fg="red")
+'''

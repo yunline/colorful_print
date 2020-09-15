@@ -23,27 +23,39 @@ COLOR={#这里记录的是前景色，背景色则要加10
 }
 
 def set_color(dm="",fg="",bg=""):
-    #dm: display mode
-    #fg: foreground
-    #bg: background
-    #不填参数就是重置为默认值
+    '''dm: display mode
+        fg: foreground
+        bg: background
+        不填参数就是重置为默认值
+    '''
     if dm:dm=str(DISPLAY_MODE[dm])
     else:dm="0"
     if fg:fg=";"+str(COLOR[fg])
     if bg:bg=";"+str(COLOR[bg]+10)
 
-    print("\033[%s%s%sm"%(dm,fg,bg),end="")
+    print("\33[%s%s%sm"%(dm,fg,bg),end="")
 
 def c_print(*args,dm="",fg="",bg="",**kwargs):
+    '''带有颜色的打印！'''
     if USE_COLOR:set_color(dm,fg,bg)
     print(*args,**kwargs)
     if USE_COLOR:set_color()
 
 def c_input(arg,dm="",fg="",bg=""):
+    '''带有颜色的输入！'''
     if USE_COLOR:set_color(dm,fg,bg)
     print(arg,end="")
     if USE_COLOR:set_color()
     return input()
+
+def c_str(s,dm="",fg="",bg=""):
+    '''给你的字符串染色吧！'''
+    if dm:dm=str(DISPLAY_MODE[dm])
+    else:dm="0"
+    if fg:fg=";"+str(COLOR[fg])
+    if bg:bg=";"+str(COLOR[bg]+10)
+    
+    return "\33[%s%s%sm%s\33[m"%(dm,fg,bg,s)
 
 '''
 #使用例
